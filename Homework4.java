@@ -8,14 +8,12 @@ public class Homework4
     private static Scanner scanner;
     private static char[][] map;
     private static Random random;
-
     private static final int SIZE = 3;
-
     private static final char MAP_ELEMENT_EMPTY = '_';
     private static final char MAP_ELEMENT_X = 'X';
     private static final char MAP_ELEMENT_0 = '0';
-
     public static void main(String[] args)
+
 
     {
         scanner = new Scanner(System.in);
@@ -26,38 +24,44 @@ public class Homework4
         printMap();
 
         while (true)
-
         {
+
             playerTurn();
             printMap();
-            if(checkWin(MAP_ELEMENT_X)){
+            if(checkWin(MAP_ELEMENT_X))
+
+            {
+
                 System.out.println("Игра окончена, победил игрок");
                 break;
             }
-            if(isMapFull()){
-                System.out.println("Игра окончена! Ничья!");
-                break;
-            }
-            aiTurn();
-            printMap();
-            if(checkWin(MAP_ELEMENT_0)){
-                System.out.println("Игра окончена, победил ИИ");
-                break;
-            }
-            if(isMapFull()) {
-                System.out.println("Игра окончена! Ничья!");
-                break;
-            }
+                    if(isMapFull())
+                {
+                    System.out.println("Игра окончена! Ничья!");
+                    break;
+                }
+
+                aiTurn();
+                printMap();
+                if(checkWin(MAP_ELEMENT_0))
+                {
+                    System.out.println("Игра окончена, победил ИИ");
+                    break;
+                }
+                if(isMapFull())
+                {
+                    System.out.println("Игра окончена! Ничья!");
+                    break;
+                }
         }
     }
+
 
     public static boolean checkWin(char element)
     {
             for (int i = 0; i < SIZE; i++)
-
             {
                 for (int j = 0; j < SIZE; j++)
-
                 {
                     if(map[i][j] == element && map[0][0] == element && map[0][1] == element && map[0][2] == element){
                     return true;
@@ -88,9 +92,10 @@ public class Homework4
         return false;
     }
 
+
     public static boolean isMapFull()
     {
-        for (int i = 0; i < SIZE; i++)
+            for (int i = 0; i < SIZE; i++)
         {
             for (int j = 0; j < SIZE; j++)
             {
@@ -102,6 +107,7 @@ public class Homework4
         }
         return true;
     }
+
 
     public static void playerTurn()
     {
@@ -133,14 +139,11 @@ public class Homework4
         while (!isMoveValid(x,y));
 
         if (map[0][0] == MAP_ELEMENT_X)
-
         {
             x = 1;
             y = 1;
         }
-
         map[x][y] = MAP_ELEMENT_0;
-
         System.out.println("AI походил в клетку [ " + (x + 1) + ", " + (y + 1) +" ]1");
     }
 
@@ -149,58 +152,47 @@ public class Homework4
     public static boolean isMoveValid(int x,int y)
     {
         if(x < 0 || y < 0 || x >= SIZE || y >= SIZE)
-
                 {
                     return false;
                 }
-
         return map[x][y] == MAP_ELEMENT_EMPTY;
     }
 
+
+
     public static void printMap()
     {
-
         System.out.println();
         System.out.print("  ");
-
-            for (int i = 1; i <=SIZE; i++)
-
-               {
+        for (int i = 1; i <=SIZE; i++)
+            {
                     System.out.print(i + " ");
-               }
-
+            }
                     System.out.println();
-
                     for (int i = 0; i < SIZE; i++)
                 {
                     System.out.print((i + 1) + " ");
 
                     for (int j = 0; j < SIZE; j++)
-
                     {
                         System.out.print(map[i][j] + " ");
                     }
-
                     System.out.println();
                 }
+
                     System.out.println();
     }
+
 
     public static void initMap()
     {
-
       map = new char[SIZE][SIZE];
-
             for (int i = 0; i < SIZE; i++)
         {
-                for (int j = 0; j < SIZE; j++)
-
+            for (int j = 0; j < SIZE; j++)
             {
                 map[i][j] = MAP_ELEMENT_EMPTY;
             }
-
         }
-
     }
-
 }
